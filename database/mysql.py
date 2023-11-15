@@ -13,12 +13,12 @@ class Database:
 
     def get_db_connection(self):
         if not self.connection_is_active:
-            connect_args = {"connect_timeout": settings.DATABASE_CONNECT_TIMEOUT}
+            connect_args = {"connect_timeout": int(settings.DATABASE_CONNECT_TIMEOUT)}
             try:
                 self.engine = create_engine(settings.DATABASE_SOURCE,
-                                            pool_size=settings.DATABASE_POOL_SIZE,
-                                            pool_recycle=settings.DATABASE_POOL_RECYCLE,
-                                            pool_timeout=settings.DATABASE_POOL_TIMEOUT,
+                                            pool_size=int(settings.DATABASE_POOL_SIZE),
+                                            pool_recycle=int(settings.DATABASE_POOL_RECYCLE),
+                                            pool_timeout=int(settings.DATABASE_POOL_TIMEOUT),
                                             connect_args=connect_args)
                 print("数据库连接成功")
                 self.connection_is_active = True
