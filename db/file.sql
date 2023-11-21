@@ -4,6 +4,7 @@ CREATE TABLE file (
     user_id             BIGINT      NULL                        COMMENT '上传用户id',
     e_tag               VARCHAR(100) NOT NULL                   COMMENT '文件哈希',
     is_upload BOOLEAN   DEFAULT FALSE NOT NULL                  COMMENT '是否上传成功',
+    file_type           INT                        NOT NULL     COMMENT '文件类型',
     ctime               DATETIME                   NULL         COMMENT '创建时间',
     mtime               DATETIME                   NULL         COMMENT '修改时间',
     deleted             BOOLEAN DEFAULT FALSE      NOT NULL     COMMENT '是否删除'
