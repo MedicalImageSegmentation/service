@@ -12,3 +12,7 @@ class DoctorPatientEntity(BaseModel, base):
     id = Column(BigInteger, primary_key=True, autoincrement=True, comment='id')
     doctor_id = Column(BigInteger, nullable=False, comment='医生id')
     patient_id = Column(BigInteger, nullable=False, comment='病人id')
+
+    def __init__(self, doctor_id, patient_id):
+        self.doctor_id = doctor_id
+        self.patient_id = patient_id

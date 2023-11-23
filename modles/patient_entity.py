@@ -1,5 +1,5 @@
-from pydantic import BaseModel
-from sqlalchemy import BigInteger, Column, String, Text, Integer
+from modles.base_model import BaseModel
+from sqlalchemy import BigInteger, Column, String, Integer, Text
 from sqlalchemy.orm import declarative_base
 
 base = declarative_base()
@@ -16,3 +16,12 @@ class PatientEntity(BaseModel, base):
     des = Column(Text, nullable=True, comment='医生备注')
     phone = Column(String(10), nullable=True, comment='电话号')
     department = Column(BigInteger, nullable=False, comment='所属科室')
+
+    def __init__(self, sex, age, name, id_number, des, phone, department):
+        self.sex = sex
+        self.age = age
+        self.name = name
+        self.id_number = id_number
+        self.des = des
+        self.phone = phone
+        self.department = department
