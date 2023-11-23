@@ -9,9 +9,6 @@ from modles.file_entity import FileEntity
 
 class PingServiceImpl(PingServicer):
     async def Ping(self, request: google_dot_protobuf_dot_empty__pb2.Empty) -> pong:
-        session = instance.database.get_db_session()
-        fileinfo = session.query(FileEntity).filter(FileEntity.id==1).first()
-        print(fileinfo)
         return pong(msg="pong")
 
 

@@ -27,7 +27,7 @@ class UserContext:
 
 request_context: ContextVar[UserContext] = ContextVar("request_context")
 
-token_provide_router = []
+token_provide_router = ["/web/v1/login"]
 
 token_check_router = []
 
@@ -82,7 +82,7 @@ def token_check_interceptor(request: Request) -> bool:
 def token_provide_interceptor(request: Request, response: JSONResponse) -> JSONResponse:
     if any(request.url.path.startswith(router) for router in token_provide_router):
         try:
-            jwt = generateToken(settings.JWT_SECRET_KEY, request_context.get(), settings.JWT_EXPIRATION_TIME)
+            jwt = generateToken(settings.JWT_SECRET_KEY, request_context.get(), int(settings.JWT_EXPIRATION_TIME))
             response.set_cookie("token", jwt)
         except LookupError:
             pass
