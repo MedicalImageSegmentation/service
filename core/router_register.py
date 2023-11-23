@@ -29,7 +29,7 @@ request_context: ContextVar[UserContext] = ContextVar("request_context")
 
 token_provide_router = ["/web/v1/login"]
 
-token_check_router = []
+token_check_router = ["/web/v1/user"]
 
 
 # 注册函数中间件

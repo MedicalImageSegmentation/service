@@ -19,3 +19,15 @@ class DoctorEntity(BaseModel, base):
     phone = Column(String(10), nullable=True, comment='电话号')
     department = Column(BigInteger, nullable=False, comment='所属科室')
     title = Column(String(10), nullable=True, comment='医生职称')
+
+    def __init__(self, sex=None, name=None, avatar_image=None, password=None, is_admin=None, id_number=None, phone=None,
+                 department=None, title=None):
+        self.sex = sex
+        self.name = name
+        self.avatar_image = avatar_image
+        self.password = password
+        self.is_admin = is_admin
+        self.id_number = id_number
+        self.phone = phone
+        self.department = department
+        self.title = title
