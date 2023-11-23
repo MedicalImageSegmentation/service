@@ -11,3 +11,6 @@ class DepartmentEntity(BaseModel, base):
 
     id = Column(BigInteger, primary_key=True, autoincrement=True, comment='id')
     name = Column(String(20), nullable=False, comment='科室名称')
+
+    def __init__(self, name):
+        self.name = name
