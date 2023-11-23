@@ -29,7 +29,7 @@ class FileServiceImpl(FileServicer):
         file_info = FileEntity()
         file_info.e_tag = request.e_tag
         file_info.file_name = request.file_name
-        file_info.user_id = request_context.get().userid
+        file_info.user_id = 0
         file_info.is_Upload = False
 
         create_fileinfo(file_info, session)
