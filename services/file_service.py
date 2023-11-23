@@ -17,7 +17,7 @@ class FileServiceImpl(FileServicer):
 
         if file is not None:
             if file.user_id is None:
-                file.user_id = request_context.get().userid
+                file.user_id = 0
                 update_file_info(file, session)
 
             if file.is_Upload is False:
