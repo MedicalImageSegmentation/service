@@ -14,10 +14,11 @@ class PatientEntity(BaseModel, base):
     name = Column(String(64), nullable=False, comment='用户名')
     id_number = Column(String(20), nullable=False, comment='身份证')
     des = Column(Text, nullable=True, comment='医生备注')
+    date = Column(String(50), nullable=True, comment='诊断时间')
     phone = Column(String(10), nullable=True, comment='电话号')
     department = Column(BigInteger, nullable=False, comment='所属科室')
 
-    def __init__(self, sex, age, name, id_number, des, phone, department):
+    def __init__(self, sex, age, name, id_number, des, phone, department, date):
         self.sex = sex
         self.age = age
         self.name = name
@@ -25,3 +26,4 @@ class PatientEntity(BaseModel, base):
         self.des = des
         self.phone = phone
         self.department = department
+        self.date = date

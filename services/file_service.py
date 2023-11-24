@@ -63,7 +63,6 @@ class FileServiceImpl(FileServicer):
         return GetDownloadUrlReply(url=url, file_name=file.file_name)
 
     async def GetDownloadUrlByTag(self, request: GetDownloadUrlByStrRequest) -> GetDownloadUrlReply:
-        print(request.info)
         session = instance.database.get_db_session()
         file = get_file_info_by_tag(request.info, session)
         if file is None:

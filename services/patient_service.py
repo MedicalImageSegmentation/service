@@ -19,7 +19,8 @@ class PatientServiceImpl(PatientServicer):
             id_number=request.id_card,
             department=request.department,
             des=request.des,
-            phone=request.phone
+            phone=request.phone,
+            date=request.diagnosis_date
         ), session)
         add_patient_doctor_info(patient_id=patient.id, doctor_id=request.doctor, session=session)
 
@@ -35,6 +36,7 @@ class PatientServiceImpl(PatientServicer):
         patient.department = request.department
         patient.des = request.des
         patient.phone = request.phone
+        patient.date = request.diagnosis_date
         modify_patient_info(patient, session)
         return PatientId(id=patient.id)
 
@@ -53,7 +55,8 @@ class PatientServiceImpl(PatientServicer):
                 id_card=patient.id_number,
                 doctor=doctor_id,
                 phone=patient.phone,
-                des=patient.des
+                des=patient.des,
+                diagnosis_date=patient.date
             ))
         return GetPatientListRequest(info=patient_list)
 
