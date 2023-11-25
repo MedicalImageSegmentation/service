@@ -56,7 +56,7 @@ class PatientServiceImpl(PatientServicer):
                 doctor=doctor_id,
                 phone=patient.phone,
                 des=patient.des,
-                diagnosis_date=patient.date
+                diagnosis_date=patient.diagnosis_date
             ))
         return GetPatientListRequest(info=patient_list)
 
