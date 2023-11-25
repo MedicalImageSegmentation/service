@@ -1,6 +1,8 @@
 from fastapi import HTTPException
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf.empty_pb2 import Empty
 
+from api.medicalImagesegmentation.user import user_pb2 as api_dot_medicalImagesegmentation_dot_user_dot_user__pb2
 from api.medicalImagesegmentation.user.user_pb2 import LoginRequest, DoctorInfo, DoctorId, GetDoctorListRequest, \
     DoctorName
 from api.medicalImagesegmentation.user.user_pb2_http import UserServicer, register_user_http_server
@@ -103,16 +105,31 @@ class DoctorServiceImpl(UserServicer):
         session = instance.database.get_db_session()
         doctor = get_doctor_info_by_id(request.id, session)
         return DoctorInfo(
-                id=doctor.id,
-                name=doctor.name,
-                sex=doctor.sex,
-                id_card=doctor.id_number,
-                phone=doctor.phone,
-                department=doctor.department,
-                img_id=int(doctor.avatar_image),
-                is_admin=doctor.is_admin,
-                title=doctor.title
-            )
+            id=doctor.id,
+            name=doctor.name,
+            sex=doctor.sex,
+            id_card=doctor.id_number,
+            phone=doctor.phone,
+            department=doctor.department,
+            img_id=int(doctor.avatar_image),
+            is_admin=doctor.is_admin,
+            title=doctor.title
+        )
+
+    async def GetDoctorInfoByToken(self, request: Empty) -> DoctorInfo:
+        session = instance.database.get_db_session()
+        doctor = get_doctor_info_by_id(request_context.get().userid, session)
+        return DoctorInfo(
+            id=doctor.id,
+            name=doctor.name,
+            sex=doctor.sex,
+            id_card=doctor.id_number,
+            phone=doctor.phone,
+            department=doctor.department,
+            img_id=int(doctor.avatar_image),
+            is_admin=doctor.is_admin,
+            title=doctor.title
+        )
 
 
 register_user_http_server(register_fastapi_route, DoctorServiceImpl(), parse_request, parse_reply)
